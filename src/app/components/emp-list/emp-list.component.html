@@ -1,0 +1,4 @@
+<app-list-item 
+*ngFor="let employee of employees" 
+[employee]="employee" 
+(deleteClick)="deleteEmployee(employee)"></app-list-item>
