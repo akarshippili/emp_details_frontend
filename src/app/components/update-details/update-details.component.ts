@@ -21,6 +21,19 @@ export class UpdateDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
+
+    this.employeeService.getEmployeeById(this.id).subscribe(data => {
+      this.name = data.name;
+      this.email = data.email;
+      this.department = data.department;
+
+
+      // console.log({
+      //   name:this.name,
+      //   email:this.email,
+      //   department:this.department
+      // });
+    })
   }
 
   onSubmit(){

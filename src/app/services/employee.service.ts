@@ -34,4 +34,9 @@ export class EmployeeService {
     return this.http.put(url,employee,httpOtions) as Observable<Employee>;
   }
 
+  getEmployeeById(id:number): Observable<Employee> {
+    const url = this.apiUrl + '/' + id;
+    return this.http.get(url) as Observable<Employee>;
+  }
+
 }
