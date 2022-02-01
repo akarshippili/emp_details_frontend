@@ -17,6 +17,8 @@ export class UpdateDetailsComponent implements OnInit {
   email:string = "";
   department:string = "";
 
+  errorMessage:string = "";
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -44,9 +46,15 @@ export class UpdateDetailsComponent implements OnInit {
       department:this.department
     }
     
-    this.employeeService.updateEmployee(employee).subscribe(data => {
+    this.employeeService.updateEmployee(employee)
+    .subscribe(data => {
       this.router.navigate(['/']);
-    })
+    },
+      httpErrorResponce => {
+        console.log(httpErrorResponce.error.error) 
+        this.errorMessage = httpErrorResponce.error.error;
+      }
+    )
   }
 
 }

@@ -1,0 +1,9 @@
+.perpage-form {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.perpage-form .form-control {
+  width: 60px;
+}

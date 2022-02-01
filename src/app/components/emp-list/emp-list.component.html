@@ -1,3 +1,15 @@
+<!-- <form (ngSubmit)="setPerPage($event)">
+    <div class="perpage-form">
+        <div class="form-group">
+            <label for="perPage">Per Page </label>
+            <select class="form-control" id="perPage" name="perPage">
+                <option *ngFor="let item of perPageList" [ngValue]="item">{{item}}</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit" class="btn">
+    </div>
+</form> -->
+
 <app-list-item 
 *ngFor="let employee of employees" 
 [employee]="employee" 

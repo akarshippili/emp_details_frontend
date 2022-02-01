@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../Employee';
 
+
 @Component({
   selector: 'app-emp-list',
   templateUrl: './emp-list.component.html',
@@ -10,7 +11,15 @@ import { Employee } from '../../Employee';
 export class EmpListComponent implements OnInit {
 
   employees:Employee[] = [];
+  // perPage:number=5;
+  // perPageList:number[]=[5,10,15,25,50];
+
   constructor(private employeeService:EmployeeService) { }
+
+  // setPerPage(form:any){
+  //   // access data from $event 
+  //   this.perPage = form.target.elements.perPage.value;
+  // }
 
   deleteEmployee(employee:Employee){
     this.employeeService.deleteEmployee(employee).subscribe(data=>{
