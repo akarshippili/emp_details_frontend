@@ -7,3 +7,13 @@
 .perpage-form .form-control {
   width: 60px;
 }
+
+.pageButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  max-width: 800px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

@@ -78,3 +78,7 @@ body {
   flex: 2;
   height: 20px;
 }
+
+.focus p {
+  color: black;
+}

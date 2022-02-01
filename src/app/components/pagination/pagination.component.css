@@ -1,0 +1,19 @@
+/* .focus {
+  background-color: black;
+}
+ */
+.pagebtn {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: gray;
+  text-align: center;
+}
+
+.pagebtn p {
+  color: rgba(37, 21, 220, 0.789);
+}
+
+.cur {
+  background-color: #f2f2f2;
+}

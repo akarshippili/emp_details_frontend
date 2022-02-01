@@ -1,4 +1,4 @@
-<!-- <form (ngSubmit)="setPerPage($event)">
+<form (ngSubmit)="setPerPage($event)">
     <div class="perpage-form">
         <div class="form-group">
             <label for="perPage">Per Page </label>
@@ -8,9 +8,17 @@
         </div>
         <input type="submit" value="Submit" class="btn">
     </div>
-</form> -->
+</form>
 
 <app-list-item 
-*ngFor="let employee of employees" 
+*ngFor="let employee of curPageEmployees" 
 [employee]="employee" 
 (deleteClick)="deleteEmployee(employee)"></app-list-item>
+
+<div class="pageButtons">
+    <button class="btn" (click)="prevPage()">Prev</button>
+    <app-pagination [curPageNumber]="curPageNumber" [ngClass]="i+1==curPageNumber?'focus':''" *ngFor="let item of [].constructor(numberOfPages); let i = index"  [pageNumber]="i+1"  (pageClick)="setPage(i+1)">
+    </app-pagination>  
+    <button class="btn" (click)="nextPage()">Next</button>
+</div>
+

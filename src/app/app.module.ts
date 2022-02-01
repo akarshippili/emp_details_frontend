@@ -11,6 +11,7 @@ import { EmpListComponent } from './components/emp-list/emp-list.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { UpdateDetailsComponent } from './components/update-details/update-details.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UpdateDetailsComponent } from './components/update-details/update-detai
     EmpListComponent,
     ListItemComponent,
     AddEmployeeComponent,
-    UpdateDetailsComponent
+    UpdateDetailsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
