@@ -16,10 +16,29 @@ export class AddEmployeeComponent implements OnInit {
   department: string = "";
 
   errorMessage: string = "";
+  errDesc: string = "";
   
   constructor(private employeeService:EmployeeService,private router:Router) { }
 
+
+  isEmail(email:string):boolean{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
   onSubmit(){
+    if(this.isEmail(this.email)==false){
+      this.errorMessage = "Invalid Email";
+      this.errDesc = "Please enter a valid email";
+      return;
+    }
+
+    if(this.name==""){
+      this.errorMessage = "Invalid Name";
+      this.errDesc = "Please enter a valid name";
+      return;
+    }
+
     const newEmployee: Employee = {
       name: this.name,
       email: this.email,
@@ -32,8 +51,9 @@ export class AddEmployeeComponent implements OnInit {
           this.router.navigate(['/'])
         },
         httpErrorResponce => {
-          console.log(httpErrorResponce.error.error) 
+          console.log(httpErrorResponce.error) 
           this.errorMessage = httpErrorResponce.error.error;
+          this.errDesc = httpErrorResponce.error.exception;
         }
       )
   }

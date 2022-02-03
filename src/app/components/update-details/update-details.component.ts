@@ -18,6 +18,7 @@ export class UpdateDetailsComponent implements OnInit {
   department:string = "";
 
   errorMessage:string = "";
+  errorDesc:string = "";
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -38,7 +39,24 @@ export class UpdateDetailsComponent implements OnInit {
     })
   }
 
+  isEmail(email:string):boolean{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
   onSubmit(){
+    if(this.isEmail(this.email)==false){
+      this.errorMessage = "Invalid Email";
+      this.errorDesc = "Please enter a valid email";
+      return;
+    }
+
+    if(this.name==""){
+      this.errorMessage = "Invalid Name";
+      this.errorDesc = "Please enter a valid name";
+      return;
+    }
+
     const employee:Employee = {
       id:this.id,
       name:this.name,
@@ -51,8 +69,9 @@ export class UpdateDetailsComponent implements OnInit {
       this.router.navigate(['/']);
     },
       httpErrorResponce => {
-        console.log(httpErrorResponce.error.error) 
+        console.log(httpErrorResponce.error) 
         this.errorMessage = httpErrorResponce.error.error;
+        this.errorDesc = httpErrorResponce.error.exception;
       }
     )
   }

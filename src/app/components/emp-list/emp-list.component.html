@@ -1,4 +1,4 @@
-<form (ngSubmit)="setPerPage($event)">
+<!-- <form (ngSubmit)="setPerPage($event)">
     <div class="perpage-form">
         <div class="form-group">
             <label for="perPage">Per Page </label>
@@ -8,12 +8,27 @@
         </div>
         <input type="submit" value="Submit" class="btn">
     </div>
+</form> -->
+
+<form (ngSubmit)="setSortBy($event)">
+    <div class="sortby-form">
+        <div class="form-group">
+            <label for="sortBy">Sort By </label>
+            <select class="form-control" id="sortBy" name="sortBy">
+                <option *ngFor="let item of sortByArr" [ngValue]="item">{{item}}</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit" class="btn">
+    </div>
 </form>
 
-<app-list-item 
-*ngFor="let employee of curPageEmployees" 
-[employee]="employee" 
-(deleteClick)="deleteEmployee(employee)"></app-list-item>
+<div class="list">
+    <app-list-item class="list-item"
+    *ngFor="let employee of curPageEmployees" 
+    [employee]="employee" 
+    (deleteClick)="deleteEmployee(employee)"></app-list-item>
+</div>
+
 
 <div class="pageButtons">
     <button class="btn" (click)="prevPage()">Prev</button>

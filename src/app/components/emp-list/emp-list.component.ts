@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../Employee';
+import { EmployeeResponse } from '../../EmployeeResponse';
 
 
 @Component({
@@ -10,12 +11,40 @@ import { Employee } from '../../Employee';
 })
 export class EmpListComponent implements OnInit {
 
-  employees:Employee[] = [];
-  perPage:number=5;
+  employees:EmployeeResponse[] = [];
+  perPage:number=12;
   perPageList:number[]=[5,10,15,25,50];
-  curPageEmployees:Employee[]=[];
+  curPageEmployees:EmployeeResponse[]=[];
   curPageNumber:number=1;
   numberOfPages!:number;
+  sortBy:any="id";
+  sortByArr:string[]=["created_at","name","email","department"];
+
+  sort(sortBy:string){
+    if(sortBy=="name"){
+      this.employees.sort((a:EmployeeResponse,b:EmployeeResponse)=>{
+        return a.name.localeCompare(b.name);
+      });
+    }
+    else if(sortBy=="email"){
+      this.employees.sort((a:Employee,b:Employee)=>{
+        return a.email.localeCompare(b.email);
+      });
+    }
+    else if(sortBy=="department"){
+      this.employees.sort((a:Employee,b:Employee)=>{
+        return a.department.localeCompare(b.department);
+      });
+    }
+    else if(sortBy=="created_at"){
+      this.employees.sort((a:EmployeeResponse,b:EmployeeResponse)=>{
+        let created_at_a = new Date(a.created_at.trim());
+        let created_at_b = new Date(b.created_at.trim());
+        return created_at_b.getTime()-created_at_a.getTime();
+      });
+    }
+  }
+  
 
   constructor(private employeeService:EmployeeService) { }
 
@@ -42,6 +71,12 @@ export class EmpListComponent implements OnInit {
       .slice((this.curPageNumber-1)*(this.perPage),this.perPage*this.curPageNumber);
   }
 
+  setSortBy(form:any){
+    this.sortBy = form.target.elements.sortBy.value;
+    this.sort(this.sortBy);
+    this.curPageEmployees = this.employees.slice((this.curPageNumber-1)*(this.perPage),this.perPage*this.curPageNumber);
+  }
+
   setPerPage(form:any){ 
     this.perPage = form.target.elements.perPage.value;
     this.curPageNumber = 1;
@@ -61,7 +96,9 @@ export class EmpListComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeService.getEmployees().subscribe(data=>{
+      console.log(data);
       this.employees = data;
+      this.sort("created_at");
       this.curPageEmployees = this.employees.slice(0,this.perPage);
       this.numberOfPages = Math.ceil(this.employees.length/this.perPage);
     });

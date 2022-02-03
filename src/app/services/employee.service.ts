@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from '../Employee';
+import { EmployeeResponse } from '../EmployeeResponse';
 
 const httpOtions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,8 +17,8 @@ export class EmployeeService {
   private apiUrl = 'http://localhost:5000/employee';
   constructor(private http:HttpClient) { }
   
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get(this.apiUrl) as Observable<Employee[]>;
+  getEmployees(): Observable<EmployeeResponse[]> {
+    return this.http.get(this.apiUrl) as Observable<EmployeeResponse[]>;
   }
 
   deleteEmployee(employee:Employee): Observable<Employee> {

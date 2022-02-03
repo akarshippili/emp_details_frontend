@@ -1,11 +1,17 @@
 .perpage-form {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-right: 10px;
 }
 
 .perpage-form .form-control {
   width: 60px;
+}
+
+.sortby-form {
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
 }
 
 .pageButtons {
@@ -16,4 +22,9 @@
   max-width: 800px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
