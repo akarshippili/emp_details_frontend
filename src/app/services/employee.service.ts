@@ -14,7 +14,7 @@ const httpOtions = {
 })
 export class EmployeeService {
 
-  private apiUrl = 'http://localhost:5000/employee';
+  apiUrl = 'http://localhost:5000/employee';
   constructor(private http:HttpClient) { }
   
   getEmployees(): Observable<EmployeeResponse[]> {
